@@ -36,7 +36,7 @@
     
     [_tableView reloadData];
     
-    //根据数据源创建家谱树
+    //创建家谱树
     UIView *familyTreeView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1000, 500)];//每行高度100
     familyTreeView.backgroundColor = [UIColor clearColor];
     [_tableView.scrollView addSubview:familyTreeView];
