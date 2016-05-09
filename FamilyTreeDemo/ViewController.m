@@ -84,13 +84,22 @@
     QYTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.titleLab.text = [@(indexPath.row) stringValue];
     
-    
     return cell;
 }
 
 #pragma mark - UIScrollView Delegate
 -(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
+    NSLog(@"%@", NSStringFromCGSize(scrollView.contentSize));
     return _tableView.subviews.firstObject;
+}
+
+-(void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale{
+    CGSize contentSize = scrollView.contentSize;
+    contentSize.width = [UIScreen mainScreen].bounds.size.width;
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        scrollView.contentSize = contentSize;
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
